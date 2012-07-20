@@ -1,12 +1,13 @@
 var util = require("util"),
     fs = require("fs"),
-    filename = "./logs.received",
-    fd = fs.openSync(filename, 'a');    
+    filename = "./received.log";   
 
 exports.recordMessage = function(request, msg) {
-    fs.writeSync(fd, msg);
+    fs.appendFileSync(filename, msg);
 }
 
-exports.getMessages = function(start, end) {
-    
+exports.getMessages = function(start, end, callback) {
+    fs.readFile(filename, function (err, data) {
+      callback(err, data);
+    });
 }

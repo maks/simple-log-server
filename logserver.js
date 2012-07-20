@@ -13,7 +13,16 @@ http.createServer(function (req, res) {
     var content = "";
     
     if (req.method === 'GET') {
-        
+        getMessages(0,0, function(err, data) {
+            if (err) {
+                res.statusCode = 404;
+                res.write(err.toString()+"\n");
+            } else {
+                res.statusCode = 200;                
+                res.write(data);
+            }
+            res.end();
+        });        
     } else if (req.method === 'POST') {    
         req.addListener("data", function(chunk) {
                 content += chunk;
