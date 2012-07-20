@@ -7,7 +7,7 @@ var util = require("util"),
     dateFormat = require("dateformat"),
     email = require("./email-notify"),
     
-    PORT = 8000,
+    PORT = parseInt(process.env.PORT, 10) || 8000,
     
     defaultBackend = "./console-backend",
     backend = (process.argv[2]) ? "./"+process.argv[2] : defaultBackend,

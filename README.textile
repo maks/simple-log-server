@@ -17,4 +17,8 @@ backend-module-name is name of js module that implements the backend interface
 h3. Sending log messages
 
 eg. 
-bc. curl -X POST --data-binary 'log me too!' http://localhost:8000
+curl -X POST --data-binary '{ "mesg" : "pls log this mesg", "level": "error", "category" : "device A" }' http://localhost:8000
+
+h3, Viewing log messages
+
+curl http://localhost:8000
