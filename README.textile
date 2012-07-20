@@ -4,7 +4,7 @@ h2. Author: Maksim Lin
 
 h2. Introduction
 
-Based on the concept from: http://lethain.com/log-collection-server-with-node-js/
+Based on a concept from: http://lethain.com/log-collection-server-with-node-js/
 
 h2. Usage
 
@@ -12,13 +12,23 @@ h3. Running the server
 
 bc. node logserver.js [backend-module-name]
 
-backend-module-name is name of js module that implements the backend interface
+you can set a shell env var PORT to override default port to lsiten on (8000).
+
+backend-module-name is name of js module that implements the backend interface 
+eg. 
+node logserver.js file-backend
 
 h3. Sending log messages
 
 eg. 
 curl -X POST --data-binary '{ "mesg" : "pls log this mesg", "level": "error", "category" : "device A" }' http://localhost:8000
 
-h3, Viewing log messages
+h3. Viewing log messages
 
 curl http://localhost:8000
+
+h3. Notifications
+
+Notifications will be emailed to all email addresses specified in recipients.csv for any log data that is recieved
+at level == "error".
+
