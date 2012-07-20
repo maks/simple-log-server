@@ -34,7 +34,7 @@ http.createServer(function (req, res) {
         });
         req.addListener("end", function() {
             var logline,
-                logData; //Expect logData to be { mesg: 'mesg text', level : 'error|warning|info|debug' }            
+                logData; //Expect logData to be { mesg: 'mesg text', level : 'error|warning|info|debug', category : 'something' }            
                 
                 try {
                     logData = JSON.parse(content);
@@ -45,6 +45,7 @@ http.createServer(function (req, res) {
                     logline = [
                         dateFormat((new Date()).toString(), "isoDateTime"), 
                         "["+logData.level+"]", 
+                        "{"+logData.category+"}", 
                         logData.mesg, "\n"
                     ].join(" ");
                     recordMessage(req, logline);
