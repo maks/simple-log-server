@@ -1,0 +1,20 @@
+h1. A simple log collection server
+
+h2. Author: Maksim Lin
+
+h2. Introduction
+
+Based on the concept from: http://lethain.com/log-collection-server-with-node-js/
+
+h2. Usage
+
+h3. Running the server
+
+bc. node logserver.js [backend-module-name]
+
+backend-module-name is name of js module that implements the backend interface
+
+h3. Sending log messages
+
+eg. 
+bc. curl -X POST --data-binary 'log me too!' http://localhost:8000
