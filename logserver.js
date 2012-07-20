@@ -1,6 +1,11 @@
+/*jshint node:true */
+
+"use strict";
+
 var util = require("util"),
     http = require("http"),
-    dateFormat = require('dateformat'),
+    dateFormat = require("dateformat"),
+    email = ("./email-notify"),
     
     PORT = 8000,
     
@@ -12,7 +17,7 @@ var util = require("util"),
 http.createServer(function (req, res) {
     var content = "";
     
-    if (req.method === 'GET') {
+    if (req.method === "GET") {
         getMessages(0,0, function(err, data) {
             if (err) {
                 res.statusCode = 404;
@@ -30,6 +35,8 @@ http.createServer(function (req, res) {
         req.addListener("end", function() {
             var logline = [dateFormat((new Date()).toString(), "isoDateTime"), content, "\n"].join(" ");
               recordMessage(req, logline);
+              email.notify(logline);
+            
               res.statusCode = 200;
               res.setHeader("Content-Type", "text/plain");
               res.write("stored message:"+logline);

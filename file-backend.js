@@ -1,3 +1,7 @@
+/*jshint node:true */
+
+"use strict";
+
 var util = require("util"),
     fs = require("fs"),
     filename = "./received.log";   

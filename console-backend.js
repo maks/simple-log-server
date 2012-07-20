@@ -1,4 +1,9 @@
-var util = require('util');
+/*jshint node:true */
+
+"use strict";
+
+
+var util = require("util");
 
 exports.recordMessage = function (request, msg) {
     util.puts("received: " + msg);
