@@ -4,6 +4,7 @@
 
 var fs = require("fs");
 
+
 /**
 
  */
@@ -15,12 +16,14 @@ exports.notify = function(mesg) {
             host:    "smtp.gmail.com", 
             ssl:     true
         }),
-        recipientList = fs.readFileSync('recipients.csv');
+        recipientList = fs.readFileSync('recipients.csv').toString();
+        
+    console.info("emailing: " + recipientList);
     // send the message and get a callback with an error or details of the message that was sent
     server.send({
        text:    mesg, 
        from:    "logging <admin@manichord.com>", 
-       to:      recipientList,
+       to:      recipientList.trim(),
        subject: "log error message"
     }, function(err, message) { 
         console.log(err || message); 
