@@ -10,12 +10,7 @@ var fs = require("fs");
  */
 exports.notify = function(mesg) {
     var email   = require("emailjs"),
-        server  = email.server.connect({
-            user:    "maks@manichord.com", 
-            password:"xmjuzybkansvejgl", 
-            host:    "smtp.gmail.com", 
-            ssl:     true
-        }),
+        server  = email.server.connect(require("./email-config")),
         recipientList = fs.readFileSync('recipients.csv').toString();
         
     console.info("emailing: " + recipientList);
